@@ -42,7 +42,9 @@ jobs:
       - name: Archive Test Result
         # Ne passe pas, à cause de la status check function, car ce qui est évalué : (success() && (steps.unit-testing-step.outcome == 'failure'))
         # if: steps.unit-testing-step.outcome == 'failure' 
-        if: failure() 
+        # Utiliser failure() avec le test non corrigé et corrigé
+        # if: failure() 
+        if: always()
         uses: actions/upload-artifact@v3
         with:
           name: mocha-test-result
