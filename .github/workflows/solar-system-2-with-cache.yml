@@ -1,4 +1,4 @@
-name: Solar System WF
+name: Solar System WF with Cache
 
 on:
   workflow_dispatch:
