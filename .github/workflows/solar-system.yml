@@ -40,7 +40,9 @@ jobs:
         run: npm test
 
       - name: Archive Test Result
-        if: steps.unit-testing-step.outcome == 'failure' 
+        # Ne passe pas, à cause de la status check function, car ce qui est évalué : (success() && (steps.unit-testing-step.outcome == 'failure'))
+        # if: steps.unit-testing-step.outcome == 'failure' 
+        if: failure() 
         uses: actions/upload-artifact@v3
         with:
           name: mocha-test-result
