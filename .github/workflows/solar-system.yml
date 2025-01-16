@@ -45,7 +45,7 @@ jobs:
         # Utiliser failure() avec le test non corrigé et corrigé
         # if: failure() 
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: mocha-test-result
           path: test-results.xml
