@@ -128,11 +128,17 @@ jobs:
           echo "Testing Image URL using wget"
           wget -q -O - 127.0.0.1:3000/live | grep live
 
-      - name: Docker Push 
+      - name: Repository Owner to Lowercase
+        id: to-lowercase
+        uses: vishalmamidi/lowercase-action@v1
+        with:
+          string: ${{ github.repository_owner }}
+
+      - name: GHCR Push 
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true 
           tags: |
             ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
-            ghcr.io/${{ github.repository_owner }}/solar-system:${{ github.sha }}
+            ghcr.io/${{ steps.to-lowercase.outputs.lowercase }}/solar-system:${{ github.sha }}
